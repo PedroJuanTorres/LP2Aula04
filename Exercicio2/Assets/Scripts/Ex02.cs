@@ -11,12 +11,22 @@ public class Ex02 : MonoBehaviour
     private Coroutine printHello;
 
 
+    private IEnumerator BeingPressed()
+    {
+        WaitForPress wfp = new WaitForPress();
+        while(true)
+        {
+            yield return wfp;
+            Debug.Log("Estou a ser pressionado!");
+        }
+    }
+
     private IEnumerator PrintHello(float secs)
     {
         WaitForSeconds wfs = new WaitForSeconds(secs);
         while (true)
         {
-            Debug.Log("Ônibus");
+            Debug.Log("Hello");
             yield return wfs;
         }
     }
@@ -44,6 +54,7 @@ public class Ex02 : MonoBehaviour
     {
         printHello = StartCoroutine(PrintHello(secHello));
         StartCoroutine(CountUp(secUp,setStopHello));
+        StartCoroutine(BeingPressed());
     }
 
     
